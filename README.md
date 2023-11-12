@@ -9,6 +9,7 @@
 ## Packeges
 
 - **[laravel v1.0.0](https://laravel.com)**
+- **[Breeze v2.0.0](https://laravel.com/docs/10.x/starter-kits#breeze-and-livewire)**
 
 ### License
 
