@@ -10,6 +10,7 @@
 
 - **[laravel v1.0.0](https://laravel.com)**
 - **[Breeze v2.0.0](https://laravel.com/docs/10.x/starter-kits#breeze-and-livewire)**
+- **[Filamentphp v3.0.0](https://filamentphp.com/docs/3.x/panels/installation)**
 
 ### License
 
