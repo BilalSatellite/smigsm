@@ -27,14 +27,6 @@ class RoleResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
     protected static ?string $navigationGroup = 'User Manage';
     protected static ?int $navigationSort = 1;
-    public function mount(): void
-    {
-        abort_unless(auth()->user()->hasRole('Admin'), 403);
-    }
-    public static function shouldRegisterNavigation(): bool
-    {
-        return auth()->user()->hasRole('Admin');
-    }
     public static function form(Form $form): Form
     {
         return $form
@@ -98,5 +90,10 @@ class RoleResource extends Resource
             'create' => Pages\CreateRole::route('/create'),
             'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
+    }
+    // admin role hidden
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('name', '!=', 'Admin');
     }
 }

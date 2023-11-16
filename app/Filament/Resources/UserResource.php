@@ -26,21 +26,16 @@ use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\RelationManagers;
+use Filament\Notifications\Actions\Action;
+use Filament\Notifications\Notification;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+    // protected static ?string $modelLabel = 'User';
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $navigationGroup = 'User Manage';
     protected static ?int $navigationSort = 3;
-    public function mount(): void
-    {
-        abort_unless(auth()->user()->hasRole('Admin'), 403);
-    }
-    public static function shouldRegisterNavigation(): bool
-    {
-        return auth()->user()->hasRole('Admin');
-    }
     public static function form(Form $form): Form
     {
         return $form
@@ -60,7 +55,7 @@ class UserResource extends Resource
                     ->schema([
                         TextInput::make('password')
                             ->password()
-                            // ->hidden(false)
+                            ->hidden(false)
                             ->visible(function (string $operation) {
                                 if ($operation === 'edit') {
                                     return  false;
@@ -104,6 +99,32 @@ class UserResource extends Resource
                                 return;
                             }),
                     ])->columns(2),
+                Section::make()
+                    ->schema([
+                        Select::make('roles')
+                            ->multiple()
+                            ->relationship('roles', 'name')
+                            ->searchable()
+                            ->preload(),
+                        Select::make('permissions')
+                            ->multiple()
+                            ->relationship('permissions', 'name')
+                            ->searchable()
+                            ->preload()
+                    ])->columns(2),
+                // Section::make()
+                //     ->schema([
+                //         Select::make('permissions')
+                //             ->multiple()
+                //             ->relationship('permissions', 'name')
+                //             ->searchable()
+                //             ->preload()
+                //     ]),
+                // TextInput::make('banned_time'),
+                // TextInput::make('wrong_attempt')
+                //     ->required()
+                //     ->numeric()
+                //     ->default(0),
             ]);
     }
     public static function table(Table $table): Table
