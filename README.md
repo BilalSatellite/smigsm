@@ -12,6 +12,7 @@
 - **[Breeze v2.0.0](https://laravel.com/docs/10.x/starter-kits#breeze-and-livewire)**
 - **[Filamentphp v3.0.0](https://filamentphp.com/docs/3.x/panels/installation)**
 - **[spatie/laravel-permission v4.0.0](https://spatie.be/docs/laravel-permission/v6/installation-laravel)**
+- **[Artisan Command,sensiolabs/ansi-to-html v5.0.0](https://symfony.com/doc/current/console/command_in_controller.html)**
 
 ### License
 
