@@ -1,3 +1,3 @@
 <x-filament-panels::page>
-	@livewire('artisangui')
+    @livewire('BsArtisan')
 </x-filament-panels::page>
