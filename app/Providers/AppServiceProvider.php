@@ -41,12 +41,6 @@ class AppServiceProvider extends ServiceProvider
             \Livewire\Features\SupportConsoleCommands\Commands\StubsCommand::class,        // livewire:stubs
             \Livewire\Features\SupportConsoleCommands\Commands\PublishCommand::class,      // livewire:publish
             \Livewire\Features\SupportConsoleCommands\Commands\UpgradeCommand::class,      // livewire:upgrade
-            // \Livewire\Features\SupportConsoleCommands\Commands\MakeLivewireCommand::class, // make:livewire
-            // \Livewire\Features\SupportConsoleCommands\Commands\TouchCommand::class,        // livewire:touch
-            // \Livewire\Features\SupportConsoleCommands\Commands\CpCommand::class,           // livewire:cp
-            // \Livewire\Features\SupportConsoleCommands\Commands\RmCommand::class,           // livewire:rm
-            // \Livewire\Features\SupportConsoleCommands\Commands\MvCommand::class,           // livewire:mv
-            // \Livewire\Features\SupportConsoleCommands\Commands\S3CleanupCommand::class,    // livewire:configure-s3-upload-cleanup
         ]);
     }
 }

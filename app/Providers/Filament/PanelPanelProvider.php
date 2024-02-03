@@ -62,6 +62,7 @@ class PanelPanelProvider extends PanelProvider
                     ->label('Home')
                     ->url(fn (): string => '/')
                     ->icon('heroicon-o-home'),
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/panel/theme.css');
     }
 }
