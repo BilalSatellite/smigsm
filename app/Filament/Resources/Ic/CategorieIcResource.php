@@ -50,6 +50,7 @@ class CategorieIcResource extends Resource
                             ->required()
                             ->live(onBlur: true)
                             ->maxLength(255)
+                            ->dehydrateStateUsing(fn (string $state): string => Str::ucfirst($state))
                             ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                         TextInput::make('slug')
                             ->disabled()
