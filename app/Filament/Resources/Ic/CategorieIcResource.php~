@@ -17,11 +17,9 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\CheckboxList;
-use App\Filament\Resources\Ic\CategorieIcResource;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Ic\CategorieIcResource\Pages;
 use App\Filament\Resources\Ic\CategorieIcResource\RelationManagers;
-use App\Filament\Resources\Ic\CategorieIcResource\RelationManagers\GetChildCategoryIcRelationManager;
 
 class CategorieIcResource extends Resource
 {
@@ -109,7 +107,7 @@ class CategorieIcResource extends Resource
     public static function getRelations(): array
     {
         return [
-            GetChildCategoryIcRelationManager::class
+            CategorieIcResource::getRelations()
         ];
     }
     public static function getPages(): array
