@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\TestCode;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome');
+Route::get('/testcode', TestCode::class)->name('testcode');
 // Route::get('dashboard', function () {
 //     return redirect('/panel');
 // })->name('dashboard');

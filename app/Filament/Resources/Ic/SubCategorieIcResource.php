@@ -64,6 +64,7 @@ class SubCategorieIcResource extends Resource
                     ->required()
                     ->preload()
                     ->relationship('getParentCategoryIc', 'name')
+
             ]);
     }
     public static function table(Table $table): Table
