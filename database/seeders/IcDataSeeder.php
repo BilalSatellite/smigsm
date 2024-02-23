@@ -44,6 +44,7 @@ class IcDataSeeder extends Seeder
             ['name' => 'SOC', 'desc' => 'System-on-a-Chip', 'categorie_ic_id' => 1],
             ['name' => 'CPU',  'desc' => 'Central processing unit', 'categorie_ic_id' => 1],
             ['name' => 'MPU', 'desc' => 'Mobile processing unit', 'categorie_ic_id' => 1],
+            ['name' => 'GPU', 'desc' => 'Grafic processing unit', 'categorie_ic_id' => 1],
             ['name' => 'PM',  'desc' => 'Power Managment', 'categorie_ic_id' => 2],
             ['name' => 'PMI',  'desc' => 'Power Managment Interface', 'categorie_ic_id' => 2],
             ['name' => 'LDO',  'desc' => 'Low-dropout', 'categorie_ic_id' => 2],

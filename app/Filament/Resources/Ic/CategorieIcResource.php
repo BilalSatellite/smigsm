@@ -29,7 +29,7 @@ class CategorieIcResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
     protected static ?string $navigationLabel = 'Ic Categorie';
     protected static ?string $modelLabel = 'Categorie';
-    protected static ?string $navigationGroup = 'Ics DataBase';
+    protected static ?string $navigationGroup = 'Ic Parameters';
     protected static ?int $navigationSort = 5;
     public function mount(): void
     {
@@ -62,13 +62,7 @@ class CategorieIcResource extends Resource
                             ->minLength(2)
                             ->maxLength(255)
                             ->columnSpanFull(),
-                        // CheckboxList::make('getChildCategoryIc.name')
-                        //     ->options(SubCategorieIc::all()->pluck('name', 'id'))
-                        //     // ->relationship(titleAttribute: 'name')
-                        //     ->label('Sub Categoryes')
-                        //     ->columns(4)
-                        //     ->gridDirection('row')
-                        //     ->columnSpanFull()
+
                     ])->columns(2)
             ]);
     }

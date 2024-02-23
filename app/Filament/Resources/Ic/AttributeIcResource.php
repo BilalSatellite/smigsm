@@ -25,7 +25,7 @@ class AttributeIcResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
     protected static ?string $navigationLabel = 'Ic Attributes';
     protected static ?string $modelLabel = 'Attribute';
-    protected static ?string $navigationGroup = 'Ics DataBase';
+    protected static ?string $navigationGroup = 'Ic Parameters';
     protected static ?int $navigationSort = 7;
     public function mount(): void
     {

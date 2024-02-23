@@ -23,7 +23,7 @@ class BrandIcResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
     protected static ?string $navigationLabel = 'Ic Brands';
     protected static ?string $modelLabel = 'Brand';
-    protected static ?string $navigationGroup = 'Ics DataBase';
+    protected static ?string $navigationGroup = 'Ic Parameters';
     protected static ?int $navigationSort = 4;
     public function mount(): void
     {
