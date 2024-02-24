@@ -2,6 +2,7 @@
 
 namespace App\Models\Ic;
 
+use App\Helpers\HasCommonRelationsIc;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Processor extends Model
 {
     use HasFactory;
+    use HasCommonRelationsIc;
 
     protected $casts = [
         'ram_support' => 'array',
@@ -25,14 +27,5 @@ class Processor extends Model
     public function contributor()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-    // public function categories(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(SubCategorieIc::class, 'category_processor');
-    // }
-    //     /** @return MorphMany<Comment> */
-    public function categories(): MorphToMany
-    {
-        return $this->morphToMany(SubCategorieIc::class, 'typeables');
     }
 }

@@ -64,10 +64,14 @@ class BrandIcResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('desc')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

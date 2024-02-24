@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('typeables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sub_categorie_ic_id')->constrained('sub_categorie_ics')->cascadeOnDelete();
+            $table->foreignId('type_ic_id')->constrained('type_ics')->cascadeOnDelete();
             $table->morphs('typeables');
             $table->timestamps();
         });

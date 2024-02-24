@@ -78,12 +78,7 @@ class ProcessorResource extends Resource
                             ->required()
                             ->columns(12)
                     ]),
-                // MorphToSelect::make('typeables')
-                //     ->types([
-                //         MorphToSelect\Type::make(SubCategorieIc::class)
-                //             ->titleAttribute('name'),
 
-                //     ]),
                 Textarea::make('desc')
                     ->maxLength(65535)
                     ->columnSpanFull(),
@@ -94,18 +89,6 @@ class ProcessorResource extends Resource
                     ->searchable()
                     ->preload()
                     ->multiple(),
-
-
-                // Select::make('categories')
-                //     ->relationship(name: 'categories', titleAttribute: 'name')
-                //     ->searchable()
-                //     ->multiple()
-                //     ->preload()
-                //     ->native(false),
-
-
-
-
             ]);
     }
 
@@ -119,13 +102,17 @@ class ProcessorResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('categories.name')
-                    ->label('Categories'),
+                    ->label('Categories')
+                    ->sortable()
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('brand.name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('ram_support')
                     ->label('Ram Support')
+                    ->sortable()
+                    ->searchable()
                     ->wrap(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable()
@@ -135,7 +122,8 @@ class ProcessorResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('contributor.name')
                     ->label('Contributor')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

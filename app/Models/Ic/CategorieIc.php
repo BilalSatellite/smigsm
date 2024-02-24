@@ -12,6 +12,6 @@ class CategorieIc extends Model
     protected $table = 'categorie_ics';
     public function getChildCategoryIc(): HasMany
     {
-        return $this->hasMany(SubCategorieIc::class, 'categorie_ic_id');
+        return $this->hasMany(TypeIc::class, 'categorie_ic_id');
     }
 }
