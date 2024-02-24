@@ -16,7 +16,7 @@
             @endforeach
         @endforeach
     @endif
-
+    {{ $data }}
     {{-- @foreach ($tests['values'] as $value)
             <p>{{ $value }}</p>
         @endforeach

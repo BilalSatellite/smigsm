@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_processor', function (Blueprint $table) {
+        Schema::create('typeables', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sub_categorie_ic_id')->constrained('sub_categorie_ics')->cascadeOnDelete();
-            $table->foreignId('processor_id')->constrained('processors')->cascadeOnDelete();
-            // $table->timestamps();
+            $table->morphs('typeables');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_processor');
+        Schema::dropIfExists('typeables');
     }
 };

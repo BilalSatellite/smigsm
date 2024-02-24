@@ -19,9 +19,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\MorphToSelect;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Ic\ProcessorResource\Pages;
 use App\Filament\Resources\Ic\ProcessorResource\RelationManagers;
+use App\Models\Ic\SubCategorieIc;
 
 class ProcessorResource extends Resource
 {
@@ -68,7 +70,7 @@ class ProcessorResource extends Resource
                     ->unique(Processor::class, 'slug', ignoreRecord: true),
 
 
-                Section::make('Categories')
+                Section::make('categories')
                     ->description('Select Categories')
                     ->schema([
                         CheckboxList::make('categories')
@@ -76,6 +78,12 @@ class ProcessorResource extends Resource
                             ->required()
                             ->columns(12)
                     ]),
+                // MorphToSelect::make('typeables')
+                //     ->types([
+                //         MorphToSelect\Type::make(SubCategorieIc::class)
+                //             ->titleAttribute('name'),
+
+                //     ]),
                 Textarea::make('desc')
                     ->maxLength(65535)
                     ->columnSpanFull(),
@@ -85,10 +93,10 @@ class ProcessorResource extends Resource
                     ->options(AttributeIc::getIcAttributes('Processor:RamSupport'))
                     ->searchable()
                     ->preload()
-                    ->multiple()
+                    ->multiple(),
 
 
-                // Select::make('category_processor')
+                // Select::make('categories')
                 //     ->relationship(name: 'categories', titleAttribute: 'name')
                 //     ->searchable()
                 //     ->multiple()
@@ -111,9 +119,8 @@ class ProcessorResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('categories.name')
-                    ->label('Categories')
-                    ->sortable()
-                    ->searchable(),
+                    ->label('Categories'),
+
                 Tables\Columns\TextColumn::make('brand.name')
                     ->searchable()
                     ->sortable(),

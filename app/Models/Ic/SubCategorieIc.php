@@ -3,6 +3,7 @@
 namespace App\Models\Ic;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,8 +16,13 @@ class SubCategorieIc extends Model
     {
         return $this->belongsTo(CategorieIc::class, 'categorie_ic_id');
     }
-    public function processores(): BelongsToMany
+    // public function processores(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Processor::class, 'category_processor');
+    // }
+
+    public function typeables(): MorphTo
     {
-        return $this->belongsToMany(Processor::class, 'category_processor');
+        return $this->morphTo();
     }
 }
