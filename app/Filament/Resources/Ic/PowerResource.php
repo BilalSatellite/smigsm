@@ -4,12 +4,11 @@ namespace App\Filament\Resources\Ic;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Ic\Power;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use App\Models\Ic\Processor;
 use App\Models\Ic\AttributeIc;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
@@ -19,20 +18,18 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\MorphToSelect;
+use App\Filament\Resources\Ic\PowerResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\Ic\ProcessorResource\Pages;
-use App\Filament\Resources\Ic\ProcessorResource\RelationManagers;
-use App\Models\Ic\SubCategorieIc;
+use App\Filament\Resources\Ic\PowerResource\RelationManagers;
 
-class ProcessorResource extends Resource
+class PowerResource extends Resource
 {
-    protected static ?string $model = Processor::class;
+    protected static ?string $model = Power::class;
     protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
-    protected static ?string $navigationLabel = 'Processors';
-    protected static ?string $modelLabel = 'Processor';
+    protected static ?string $navigationLabel = 'Powers';
+    protected static ?string $modelLabel = 'Power';
     protected static ?string $navigationGroup = 'Ics DataBase';
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 9;
     public static function form(Form $form): Form
     {
         return $form
@@ -63,7 +60,7 @@ class ProcessorResource extends Resource
                     ->dehydrated()
                     ->required()
                     ->maxLength(255)
-                    ->unique(Processor::class, 'slug', ignoreRecord: true),
+                    ->unique(Power::class, 'slug', ignoreRecord: true),
                 Section::make('categories')
                     ->description('Select Categories')
                     ->schema([
@@ -77,11 +74,11 @@ class ProcessorResource extends Resource
                     ->columnSpanFull(),
                 RichEditor::make('content')
                     ->columnSpanFull(),
-                Select::make('ram_support')
-                    ->options(AttributeIc::getIcAttributes('RamSupport'))
-                    ->searchable()
-                    ->preload()
-                    ->multiple(),
+                // Select::make('ram_support')
+                //     ->options(AttributeIc::getIcAttributes('Processor:RamSupport'))
+                //     ->searchable()
+                //     ->preload()
+                //     ->multiple(),
             ]);
     }
     public static function table(Table $table): Table
@@ -127,7 +124,6 @@ class ProcessorResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -145,10 +141,9 @@ class ProcessorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProcessors::route('/'),
-            'create' => Pages\CreateProcessor::route('/create'),
-            'view' => Pages\ViewProcessor::route('/{record}/view'),
-            'edit' => Pages\EditProcessor::route('/{record}/edit'),
+            'index' => Pages\ListPowers::route('/'),
+            'create' => Pages\CreatePower::route('/create'),
+            'edit' => Pages\EditPower::route('/{record}/edit'),
         ];
     }
 }

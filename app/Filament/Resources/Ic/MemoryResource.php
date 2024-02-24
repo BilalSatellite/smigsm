@@ -5,11 +5,10 @@ namespace App\Filament\Resources\Ic;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
+use App\Models\Ic\Memory;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use App\Models\Ic\Processor;
 use App\Models\Ic\AttributeIc;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
@@ -19,20 +18,20 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\MorphToSelect;
+use App\Filament\Resources\Ic\MemoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\Ic\ProcessorResource\Pages;
-use App\Filament\Resources\Ic\ProcessorResource\RelationManagers;
-use App\Models\Ic\SubCategorieIc;
+use App\Filament\Resources\Ic\MemoryResource\RelationManagers;
 
-class ProcessorResource extends Resource
+class MemoryResource extends Resource
 {
-    protected static ?string $model = Processor::class;
+    protected static ?string $model = Memory::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
-    protected static ?string $navigationLabel = 'Processors';
-    protected static ?string $modelLabel = 'Processor';
+    protected static ?string $navigationLabel = 'Memorys';
+    protected static ?string $modelLabel = 'Memory';
     protected static ?string $navigationGroup = 'Ics DataBase';
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 10;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -63,7 +62,7 @@ class ProcessorResource extends Resource
                     ->dehydrated()
                     ->required()
                     ->maxLength(255)
-                    ->unique(Processor::class, 'slug', ignoreRecord: true),
+                    ->unique(Memory::class, 'slug', ignoreRecord: true),
                 Section::make('categories')
                     ->description('Select Categories')
                     ->schema([
@@ -72,18 +71,39 @@ class ProcessorResource extends Resource
                             ->required()
                             ->columns(12)
                     ]),
+                Select::make('bga')
+                    ->label('BGA Type')
+                    ->options(AttributeIc::getIcAttributes('BGA'))
+                    ->searchable()
+                    ->preload(),
+                Select::make('ver')
+                    ->label('Version')
+                    ->options(AttributeIc::getIcAttributes('eMMC:Ver'))
+                    ->searchable()
+                    ->preload(),
+                Select::make('rever')
+                    ->label('Revision Version')
+                    ->options(AttributeIc::getIcAttributes('eMMC:ReVer'))
+                    ->searchable()
+                    ->preload(),
+                Select::make('memory_size')
+                    ->label('Memory Size')
+                    ->options(AttributeIc::getIcAttributes('Memory:Size'))
+                    ->searchable()
+                    ->preload(),
+                Select::make('ram_type')
+                    ->label('Ram Type')
+                    ->options(AttributeIc::getIcAttributes('RamSupport'))
+                    ->searchable()
+                    ->preload(),
                 Textarea::make('desc')
                     ->maxLength(65535)
                     ->columnSpanFull(),
                 RichEditor::make('content')
                     ->columnSpanFull(),
-                Select::make('ram_support')
-                    ->options(AttributeIc::getIcAttributes('RamSupport'))
-                    ->searchable()
-                    ->preload()
-                    ->multiple(),
             ]);
     }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -96,14 +116,38 @@ class ProcessorResource extends Resource
                     ->label('Categories')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('bga')
+                    ->label('BGA Type')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('ram_type')
+                    ->label('Ram Type')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('memory_size')
+                    ->label('Memory Size')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('brand.name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('ram_support')
-                    ->label('Ram Support')
+                TextColumn::make('ver')
+                    ->label('Version')
                     ->sortable()
                     ->searchable()
-                    ->wrap(),
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('rever')
+                    ->label('Revision Version')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+
+                // TextColumn::make('ram_support')
+                //     ->label('Ram Support')
+                //     ->sortable()
+                //     ->searchable()
+                //     ->wrap(),
                 TextColumn::make('slug')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -127,7 +171,6 @@ class ProcessorResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -136,19 +179,20 @@ class ProcessorResource extends Resource
                 ]),
             ]);
     }
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProcessors::route('/'),
-            'create' => Pages\CreateProcessor::route('/create'),
-            'view' => Pages\ViewProcessor::route('/{record}/view'),
-            'edit' => Pages\EditProcessor::route('/{record}/edit'),
+            'index' => Pages\ListMemories::route('/'),
+            'create' => Pages\CreateMemory::route('/create'),
+            'edit' => Pages\EditMemory::route('/{record}/edit'),
         ];
     }
 }

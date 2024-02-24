@@ -14,18 +14,9 @@ class Processor extends Model
 {
     use HasFactory;
     use HasCommonRelationsIc;
+    protected $table = 'processors';
 
     protected $casts = [
         'ram_support' => 'array',
     ];
-
-    public function brand()
-    {
-        return $this->belongsTo(BrandIc::class, 'brand_ic_id');
-    }
-
-    public function contributor()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }

@@ -73,7 +73,8 @@ class TypeIcResource extends Resource
                     ->searchable(),
                 TextColumn::make('getParentCategoryIc.name')
                     ->label('Category')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('desc')
                     ->searchable(),
                 TextColumn::make('slug')
