@@ -14,6 +14,7 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\CheckboxList;
@@ -70,6 +71,7 @@ class CategorieIcResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Category')
                     ->searchable()
@@ -77,7 +79,7 @@ class CategorieIcResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('getChildCategoryIc.name')
+                Tables\Columns\TextColumn::make('getTypeIcs.name')
                     ->label('Types')
                     ->searchable()
                     ->sortable(),

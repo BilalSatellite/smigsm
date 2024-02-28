@@ -7,17 +7,18 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use App\Models\Ic\CategorieIc;
 use App\Models\Ic\SubCategorieIc;
 use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Columns\TextColumn;
 
 class GetChildCategoryIcRelationManager extends RelationManager
 {
-    protected static string $relationship = 'getChildCategoryIc';
+    protected static string $relationship = 'getTypeIcs';
     public function form(Form $form): Form
     {
         return $form
@@ -32,7 +33,7 @@ class GetChildCategoryIcRelationManager extends RelationManager
                     ->dehydrated()
                     ->required()
                     ->maxLength(255)
-                    ->unique(SubCategorieIc::class, 'slug', ignoreRecord: true),
+                    ->unique(CategorieIc::class, 'slug', ignoreRecord: true),
                 Textarea::make('desc')
                     ->maxLength(65535)
                     ->columnSpanFull(),

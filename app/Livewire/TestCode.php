@@ -3,41 +3,55 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Ic\AttributeIc;
-use App\Models\Ic\Processor;
-use Livewire\Attributes\Computed;
+
+
+use App\Models\Ic\TypeIc;
 use Illuminate\Support\Facades\DB;
+
+
+
 
 class TestCode extends Component
 {
-    public $getfor;
-
-    #[Computed]
-    public function seletedattributes()
+    public $perpage = 10;
+    public $search;
+    public $sortColumn = 'id';
+    public $sortDirection = 'asc';
+    public function updatingsearchTerm()
     {
-        return AttributeIc::where('name', $this->getfor)->get();
+        $this->resetPage();
+    }
+    public function updatingperpage()
+    {
+        $this->resetPage();
+    }
+    public function sort($column)
+    {
+        $this->sortColumn = $column;
+        $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
     }
 
-    public function ppp()
+
+
+
+    private function resultData()
     {
-        $data = Processor::first(1);
+        return TypeIc::search($this->search)
+            ->orderBy($this->sortColumn, $this->sortDirection)
+            ->paginate($this->perpage);
     }
+
+
+
+
+
     public function render()
     {
-        // $tests = DB::table('attribute_ics')
-        //     ->where('name', '=', 'Processor:Type')
-        //     ->toArray();
 
 
-
-
-        // build your second collection with a subset of attributes. this new
-        // collection will be a collection of plain arrays, not Users models.
-        $data = Processor::all();
+        // dd($fullOuterJoin);
         return view('livewire.test-code', [
-            'attributeIcs' => AttributeIc::all(),
-            // 'tests' => $this->user(),
-            'data' => $data,
+            'data' => $this->resultData(),
         ]);
     }
 }

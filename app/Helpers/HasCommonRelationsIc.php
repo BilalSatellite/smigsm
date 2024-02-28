@@ -6,11 +6,17 @@ use App\Models\User;
 use App\Models\Ic\TypeIc;
 use App\Models\Ic\BrandIc;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasCommonRelationsIc
 {
 
-    public function categories(): MorphToMany
+    // public function Ictypes(): MorphMany
+    // {
+    //     return $this->morphMany(TypeIc::class, 'typeables');
+    // }
+    public function Ictypes(): MorphToMany
     {
         return $this->morphToMany(TypeIc::class, 'typeables');
     }

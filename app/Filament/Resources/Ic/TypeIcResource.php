@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\Ic\TypeIcResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Ic\TypeIcResource\RelationManagers;
+use App\Filament\Resources\Ic\TypeIcResource\RelationManagers\GetProcessorsRelationManager;
 
 class TypeIcResource extends Resource
 {
@@ -55,11 +56,11 @@ class TypeIcResource extends Resource
                     ->maxLength(65535)
                     ->columnSpanFull(),
                 Select::make('categorie_ic_id')
-                    ->label('Parent Category')
+                    ->label('Category')
                     ->searchable()
                     ->required()
                     ->preload()
-                    ->relationship('getParentCategoryIc', 'name')
+                    ->relationship('getCategoryIcs', 'name')
             ]);
     }
 
@@ -67,11 +68,13 @@ class TypeIcResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
+
                 TextColumn::make('name')
-                    ->label('Types')
+                    ->label('Type')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('getParentCategoryIc.name')
+                TextColumn::make('getCategoryIcs.name')
                     ->label('Category')
                     ->sortable()
                     ->searchable(),
@@ -105,7 +108,7 @@ class TypeIcResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            GetProcessorsRelationManager::class
         ];
     }
 

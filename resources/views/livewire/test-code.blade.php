@@ -1,6 +1,9 @@
 <div>
-
-    <x-filament::input.wrapper>
+    <div class="flex justify-between">
+        <input wire:model.live="search" type="search" placeholder="Search" {{-- {{ $modalFormVisible == true ? '' : 'disabled' }} --}}
+            class="w-full px-3 py-2 leading-tight border rounded shadow appearance-none " />
+    </div>
+    {{-- <x-filament::input.wrapper>
         <x-filament::input.select wire:model.live="getfor">
             @foreach ($attributeIcs as $attributeIc)
                 <option value="{{ $attributeIc->name }}">{{ $attributeIc->name }}</option>
@@ -16,8 +19,50 @@
             @endforeach
         @endforeach
     @endif
-    {{ $data }}
+    {{ $data }} --}}
     {{-- @foreach ($tests['values'] as $value)
             <p>{{ $value }}</p>
         @endforeach
-</div> --}}
+        --}}
+
+    {{-- {{ $data }} --}}
+    {{-- @dd($data) --}}
+
+    {{-- @foreach ($data as $i)
+        <p>Type:{{ $i->name }}</p>
+
+        <div>
+            @foreach ($i->getProcessors as $processors)
+                <p>Cpu:{{ $processors->name }}</p>
+            @endforeach
+        </div>
+
+        @foreach ($i->getPowers as $powers)
+            {{ $powers->name }}
+        @endforeach
+        @foreach ($i->getMemoryes as $memory)
+            {{ $memory->name }}
+        @endforeach
+    @endforeach --}}
+    @foreach ($data as $a)
+        {{-- <p>{{ $a->name }}</p> --}}
+        @foreach ($a->getProcessors as $p)
+            <div class="flex items-center justify-around ">
+                <p>{{ $p->name }}</p>
+                <p>{{ $p->brand->name }}</p>
+                {{-- @foreach ($p->Ictypes as $type)
+                    <p>{{ $type->name }}</p>
+                @endforeach --}}
+            </div>
+        @endforeach
+        @foreach ($a->getPowers as $pw)
+            <p>{{ $pw->name }}</p>
+            <p>{{ $pw->brand->name }}</p>
+        @endforeach
+        @foreach ($a->getMemoryes as $m)
+            <p>{{ $m->name }}</p>
+            <p>{{ $m->brand->name }}</p>
+        @endforeach
+    @endforeach
+
+</div>

@@ -10,7 +10,7 @@ class CategorieIc extends Model
 {
     use HasFactory;
     protected $table = 'categorie_ics';
-    public function getChildCategoryIc(): HasMany
+    public function getTypeIcs(): HasMany
     {
         return $this->hasMany(TypeIc::class, 'categorie_ic_id');
     }

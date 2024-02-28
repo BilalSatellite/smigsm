@@ -63,10 +63,10 @@ class MemoryResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->unique(Memory::class, 'slug', ignoreRecord: true),
-                Section::make('categories')
-                    ->description('Select Categories')
+                Section::make('Ictypes')
+                    ->description('Select Ic types')
                     ->schema([
-                        CheckboxList::make('categories')
+                        CheckboxList::make('Ictypes')
                             ->relationship(titleAttribute: 'name')
                             ->required()
                             ->columns(12)
@@ -108,12 +108,13 @@ class MemoryResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('name')
                     ->label('Code')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('categories.name')
-                    ->label('Categories')
+                TextColumn::make('Ictypes.name')
+                    ->label('Types')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('bga')

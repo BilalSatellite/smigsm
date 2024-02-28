@@ -64,10 +64,10 @@ class ProcessorResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->unique(Processor::class, 'slug', ignoreRecord: true),
-                Section::make('categories')
-                    ->description('Select Categories')
+                Section::make('Ictypes')
+                    ->description('Select Ic types')
                     ->schema([
-                        CheckboxList::make('categories')
+                        CheckboxList::make('Ictypes')
                             ->relationship(titleAttribute: 'name')
                             ->required()
                             ->columns(12)
@@ -88,14 +88,15 @@ class ProcessorResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('name')
                     ->label('Code')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('categories.name')
-                    ->label('Categories')
-                    ->sortable()
-                    ->searchable(),
+                // TextColumn::make('Ictypes.name')
+                //     ->label('Types')
+                //     ->sortable()
+                //     ->searchable(),
                 TextColumn::make('brand.name')
                     ->searchable()
                     ->sortable(),
