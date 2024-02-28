@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "livewire/volt": "^1.0",
+        "protonemedia/laravel-cross-eloquent-search": "^3.3",
         "sensiolabs/ansi-to-html": "^1.2",
         "spatie/laravel-permission": "^6.1"
     },

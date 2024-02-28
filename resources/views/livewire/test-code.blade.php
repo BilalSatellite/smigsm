@@ -44,15 +44,20 @@
             {{ $memory->name }}
         @endforeach
     @endforeach --}}
-    @foreach ($data as $a)
-        {{-- <p>{{ $a->name }}</p> --}}
-        @foreach ($a->getProcessors as $p)
+    {{-- @dd($data) --}}
+    @if ($search)
+
+
+        @foreach ($data as $a)
+            <p>{{ $a->name }}</p>
+            <p>{{ $a->brand->name }}</p>
+            {{-- @foreach ($a->getProcessors as $p)
             <div class="flex items-center justify-around ">
                 <p>{{ $p->name }}</p>
                 <p>{{ $p->brand->name }}</p>
-                {{-- @foreach ($p->Ictypes as $type)
+                @foreach ($p->Ictypes as $type)
                     <p>{{ $type->name }}</p>
-                @endforeach --}}
+                @endforeach
             </div>
         @endforeach
         @foreach ($a->getPowers as $pw)
@@ -62,7 +67,12 @@
         @foreach ($a->getMemoryes as $m)
             <p>{{ $m->name }}</p>
             <p>{{ $m->brand->name }}</p>
+        @endforeach --}}
         @endforeach
-    @endforeach
+
+        {{-- {{ $data }} --}}
+    @else
+        Nodata
+    @endif
 
 </div>
