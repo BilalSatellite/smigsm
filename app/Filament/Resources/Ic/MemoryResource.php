@@ -6,28 +6,30 @@ use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Helpers\BsHelper;
+use App\Models\Ic\Memory;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use App\Models\Ic\Processor;
 use Filament\Resources\Resource;
-use Illuminate\Support\Collection;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
-use App\Filament\Resources\Ic\ProcessorResource\Pages;
-use App\Filament\Resources\Ic\ProcessorResource\RelationManagers;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\Ic\MemoryResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\Ic\MemoryResource\RelationManagers;
 
-class ProcessorResource extends Resource
+class MemoryResource extends Resource
 {
-    protected static ?string $model = Processor::class;
+    protected static ?string $model = Memory::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
-    protected static ?string $navigationLabel = 'Processors';
-    protected static ?string $modelLabel = 'Processor';
+    protected static ?string $navigationLabel = 'Memories';
+    protected static ?string $modelLabel = 'Memory';
     protected static ?string $navigationGroup = 'Ics DataBase';
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 10;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -47,7 +49,7 @@ class ProcessorResource extends Resource
                     ->native(false),
                 Select::make('ic_type_id')
                     ->label('Ic Type')
-                    ->options(BsHelper::icTypesBy('Processor'))
+                    ->options(BsHelper::icTypesBy('Memory'))
                     ->searchable()
                     ->required()
                     ->preload()
@@ -66,29 +68,30 @@ class ProcessorResource extends Resource
                     ->dehydrated()
                     ->required()
                     ->maxLength(255)
-                    ->unique(Processor::class, 'slug', ignoreRecord: true),
+                    ->unique(Memory::class, 'slug', ignoreRecord: true),
                 Textarea::make('desc')
                     ->maxLength(65535)
                     ->columnSpanFull(),
                 RichEditor::make('content')
                     ->columnSpanFull(),
-                Select::make('ram_support')
-                    ->options(BsHelper::getIcAttributes('RamSupport'))
-                    ->searchable()
-                    ->preload()
-                    ->multiple(),
+                // Select::make('ram_support')
+                //     ->options(IcAttribute::getIcAttributes('RamSupport'))
+                //     ->searchable()
+                //     ->preload()
+                //     ->multiple(),
             ]);
     }
+
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('brand.name')
-                    ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('icType.name')
                     ->label('Type')
                     ->searchable()
@@ -121,18 +124,20 @@ class ProcessorResource extends Resource
                 ]),
             ]);
     }
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProcessors::route('/'),
-            'create' => Pages\CreateProcessor::route('/create'),
-            'edit' => Pages\EditProcessor::route('/{record}/edit'),
+            'index' => Pages\ListMemories::route('/'),
+            'create' => Pages\CreateMemory::route('/create'),
+            'edit' => Pages\EditMemory::route('/{record}/edit'),
         ];
     }
 }

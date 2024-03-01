@@ -12,14 +12,4 @@ class IcAttribute extends Model
     protected $casts = [
         'values' => 'array',
     ];
-
-    public static  function getIcAttributes($for)
-    {
-        $ref = (new static)::where('name', $for)->first()->values;
-        $data = [];
-        foreach ($ref as $i) {
-            $data[$i] = $i;
-        }
-        return $data;
-    }
 }
