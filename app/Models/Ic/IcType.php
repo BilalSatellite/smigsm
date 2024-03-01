@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class IcType extends Model
 {
     use HasFactory;
-    public function icCategories(): BelongsTo
+    public function icCategory(): BelongsTo
     {
         return $this->belongsTo(IcCategory::class, 'ic_categorie_id');
     }

@@ -79,7 +79,7 @@ class IcTypeResource extends Resource
                     ->label('Type')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('icCategories.name')
+                TextColumn::make('icCategory.name')
                     ->label('Category')
                     ->sortable()
                     ->searchable(),
