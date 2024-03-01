@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\GsmAssisting;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::view('/', 'welcome');
 // Route::get('/profile', function () {
 //     return redirect('/panel/my-profile');
 // })->middleware(['auth'])->name('profile');
+Route::get('/gsmassisting', GsmAssisting::class)->name('gsmassisting');
 Route::get('/dashboard', function () {
     return redirect('/panel');
 })->middleware(['auth'])->name('dashboard');

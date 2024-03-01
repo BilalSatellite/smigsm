@@ -13,6 +13,7 @@
 - **[Filamentphp v3.0.0](https://filamentphp.com/docs/3.x/panels/installation)**
 - **[spatie/laravel-permission v4.0.0](https://spatie.be/docs/laravel-permission/v6/installation-laravel)**
 - **[Artisan Command,sensiolabs/ansi-to-html v5.0.0](https://symfony.com/doc/current/console/command_in_controller.html)**
+- **[Laravel Cross Eloquent Search](https://github.com/protonemedia/laravel-cross-eloquent-search)**
 
 ### License
 
