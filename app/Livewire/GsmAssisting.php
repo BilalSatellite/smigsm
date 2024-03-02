@@ -2,16 +2,20 @@
 
 namespace App\Livewire;
 
-use App\Models\Ic\Memory;
-use App\Models\Ic\Power;
-use App\Models\Ic\Processor;
 use Livewire\Component;
-use ProtoneMedia\LaravelCrossEloquentSearch\Search;
+use App\Models\Ic\Power;
+use App\Models\Ic\Memory;
+use App\Models\Ic\Processor;
+use Livewire\WithPagination;
 
+use Livewire\Attributes\Layout;
+use ProtoneMedia\LaravelCrossEloquentSearch\Search;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
+#[Layout('layouts.gsmassisting')]
 class GsmAssisting extends Component
 {
+    use WithPagination;
     public $search;
 
     public function render()

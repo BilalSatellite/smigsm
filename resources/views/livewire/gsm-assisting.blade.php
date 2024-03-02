@@ -1,10 +1,5 @@
 <div>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('GSM Assistant') }}
 
-        </h2>
-    </x-slot>
     <div class="flex flex-col items-center justify-center px-10 space-y-4 ">
         <input wire:model.live="search">
 
