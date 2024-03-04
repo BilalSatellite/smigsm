@@ -81,7 +81,4 @@ $register = function () {
             </x-primary-button>
         </div>
     </form>
-    <!-- footer -->
-    @include('layouts.include.guest.footer')
-    <!-- footer END -->
 </div>

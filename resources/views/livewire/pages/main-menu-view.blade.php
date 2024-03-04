@@ -69,7 +69,7 @@
                             </x-slot>
                         </x-dropdown>
                     @else
-                        <a href="{{ route('login') }}" class="brandBtn">{{ __('Log On') }}</a>
+                        <a href="{{ route('register') }}" class="brandBtn">{{ __('Log On') }}</a>
                         {{-- <a href="{{ route('register') }}" class="brandBtn">Register</a> --}}
                     @endauth
                 @endif

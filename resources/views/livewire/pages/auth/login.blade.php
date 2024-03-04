@@ -46,15 +46,17 @@ $login = function () {
         </div>
         <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember" class="inline-flex items-center">
+            <x-checkbox wire:model="form.remember" :label="__('Remember me')" :for="__('remember')" />
+
+            {{-- <label for="remember" class="inline-flex items-center">
                 <input wire:model="form.remember" id="remember" type="checkbox"
                     class="text-indigo-600 border-gray-300 rounded shadow-sm focus:ring-indigo-500" name="remember">
                 <span class="text-sm text-gray-600 ms-2">{{ __('Remember me') }}</span>
-            </label>
+            </label> --}}
         </div>
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                <a class="text-sm underline rounded-md text-brandBlack/90 hover:text-brandBlack focus:ring-none focus:outline-none"
                     href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>

@@ -32,6 +32,12 @@ class PanelPanelProvider extends PanelProvider
             ->path('panel')
             ->colors([
                 'primary' => Color::Amber,
+                'gray' => Color::Gray,
+                'danger' => Color::Red,
+                'info' => Color::Blue,
+                'success' => Color::Green,
+                'warning' => Color::Orange,
+
             ])
             ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
