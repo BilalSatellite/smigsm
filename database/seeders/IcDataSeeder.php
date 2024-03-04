@@ -2,11 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ic\IcAttribute;
-use App\Models\Ic\IcBrand;
-use App\Models\Ic\IcCategory;
+use App\Models\Ic\Power;
 use App\Models\Ic\IcType;
+use App\Models\Ic\IcBrand;
 use Illuminate\Support\Str;
+use App\Models\Ic\Processor;
+use App\Models\Ic\IcCategory;
+use App\Models\Ic\IcAttribute;
+use App\Models\Ic\Memory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -57,6 +60,7 @@ class IcDataSeeder extends Seeder
             ['name' => 'eMCP',  'desc' => 'embedded Multi Chip Packages', 'ic_categorie_id' => 3],
             ['name' => 'UFS',  'desc' => 'Universal Flash Storage', 'ic_categorie_id' => 3],
             ['name' => 'uMCP',  'desc' => 'UFS-based multichip package', 'ic_categorie_id' => 3],
+            ['name' => 'Ram',  'desc' => 'Randem access Memory', 'ic_categorie_id' => 3],
             //network
             ['name' => '2G:PA',  'desc' => 'Second-Generation Power Amplifier', 'ic_categorie_id' => 4],
             ['name' => '3G:PA',  'desc' => 'Third-Generation Power Amplifier', 'ic_categorie_id' => 4],
@@ -93,6 +97,88 @@ class IcDataSeeder extends Seeder
                 [
                     'name' => $Icattribute[0],
                     'values' => $Icattribute[1]
+                ]
+            );
+        }
+
+        //Processor
+        $processors = [
+            ['name' => 'MSM6550A', 'ram_support' => ['LPDDR3'],  'ic_categorie_id' => 1, 'ic_brand_id' => 1, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'SM4375', 'ram_support' => ['LPDDR4'],  'ic_categorie_id' => 1, 'ic_brand_id' => 1, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'SM8475', 'ram_support' => ['LPDDR5'],  'ic_categorie_id' => 1, 'ic_brand_id' => 1, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'MT6216', 'ram_support' => ['LPDDR3'],  'ic_categorie_id' => 1, 'ic_brand_id' => 2, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'MT6797', 'ram_support' => ['LPDDR3'],  'ic_categorie_id' => 1, 'ic_brand_id' => 2, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'SC9610', 'ram_support' => ['LPDDR2'],  'ic_categorie_id' => 1, 'ic_brand_id' => 3, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'SC7727S', 'ram_support' => ['LPDDR4'],  'ic_categorie_id' => 1, 'ic_brand_id' => 3, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'Kirin 9000', 'ram_support' => ['LPDDR2'],  'ic_categorie_id' => 1, 'ic_brand_id' => 7, 'ic_type_id' => 1, 'user_id' => 1],
+            ['name' => 'Kirin 990', 'ram_support' => ['LPDDR3'],  'ic_categorie_id' => 1, 'ic_brand_id' => 7, 'ic_type_id' => 1, 'user_id' => 1],
+
+        ];
+
+        foreach ($processors as $processor) {
+
+            Processor::create(
+                [
+                    'name' => $processor['name'],
+                    'slug' => Str::slug($processor['name']),
+                    'ram_support' => $processor['ram_support'],
+                    'ic_categorie_id' => $processor['ic_categorie_id'],
+                    'ic_brand_id' => $processor['ic_brand_id'],
+                    'ic_type_id' => $processor['ic_type_id'],
+                    'user_id' => $processor['user_id'],
+                ]
+            );
+        }
+        //powers
+        $powers = [
+            ['name' => 'pm8953',   'ic_categorie_id' => 2, 'ic_brand_id' => 1, 'ic_type_id' => 5, 'user_id' => 1],
+            ['name' => 'pm6350',   'ic_categorie_id' => 2, 'ic_brand_id' => 1, 'ic_type_id' => 5, 'user_id' => 1],
+            ['name' => 'SMB1351-022',   'ic_categorie_id' => 2, 'ic_brand_id' => 1, 'ic_type_id' => 6, 'user_id' => 1],
+            ['name' => 'MT6177MV',   'ic_categorie_id' => 2, 'ic_brand_id' => 2, 'ic_type_id' => 5, 'user_id' => 1],
+            ['name' => 'MT6353V',   'ic_categorie_id' => 2, 'ic_brand_id' => 2, 'ic_type_id' => 6, 'user_id' => 1],
+            ['name' => 'SC2721G',   'ic_categorie_id' => 2, 'ic_brand_id' => 3, 'ic_type_id' => 5, 'user_id' => 1],
+            ['name' => 'UMP510G5',   'ic_categorie_id' => 2, 'ic_brand_id' => 3, 'ic_type_id' => 6, 'user_id' => 1],
+            ['name' => 'HI6421',   'ic_categorie_id' => 2, 'ic_brand_id' => 7, 'ic_type_id' => 5, 'user_id' => 1],
+            ['name' => 'hi6563',   'ic_categorie_id' => 2, 'ic_brand_id' => 7, 'ic_type_id' => 6, 'user_id' => 1],
+
+        ];
+        foreach ($powers as $power) {
+
+            Power::create(
+                [
+                    'name' => $power['name'],
+                    'slug' => Str::slug($power['name']),
+                    'ic_categorie_id' => $power['ic_categorie_id'],
+                    'ic_brand_id' => $power['ic_brand_id'],
+                    'ic_type_id' => $power['ic_type_id'],
+                    'user_id' => $power['user_id'],
+                ]
+            );
+        }
+
+        //Memorys
+        $memorys = [
+            ['name' => 'km58374',   'ic_categorie_id' => 3, 'ic_brand_id' => 5, 'ic_type_id' => 8, 'user_id' => 1],
+            ['name' => 'km84756',   'ic_categorie_id' => 3, 'ic_brand_id' => 14, 'ic_type_id' => 9, 'user_id' => 1],
+            ['name' => 'm839594',   'ic_categorie_id' => 3, 'ic_brand_id' => 8, 'ic_type_id' => 10, 'user_id' => 1],
+            ['name' => 'sk8945',   'ic_categorie_id' => 3, 'ic_brand_id' => 15, 'ic_type_id' => 8, 'user_id' => 1],
+            ['name' => 'to48273',   'ic_categorie_id' => 3, 'ic_brand_id' => 16, 'ic_type_id' => 10, 'user_id' => 1],
+            ['name' => 'SC2721',   'ic_categorie_id' => 3, 'ic_brand_id' => 20, 'ic_type_id' => 9, 'user_id' => 1],
+            ['name' => 'UMP510G5',   'ic_categorie_id' => 3, 'ic_brand_id' => 21, 'ic_type_id' => 10, 'user_id' => 1],
+            ['name' => 'sce6421',   'ic_categorie_id' => 3, 'ic_brand_id' => 9, 'ic_type_id' => 8, 'user_id' => 1],
+            ['name' => 'jdye9955',   'ic_categorie_id' => 3, 'ic_brand_id' => 10, 'ic_type_id' => 8, 'user_id' => 1],
+
+        ];
+        foreach ($memorys as $memory) {
+
+            Memory::create(
+                [
+                    'name' => $memory['name'],
+                    'slug' => Str::slug($memory['name']),
+                    'ic_categorie_id' => $memory['ic_categorie_id'],
+                    'ic_brand_id' => $memory['ic_brand_id'],
+                    'ic_type_id' => $memory['ic_type_id'],
+                    'user_id' => $memory['user_id'],
                 ]
             );
         }

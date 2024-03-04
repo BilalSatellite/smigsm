@@ -52,7 +52,7 @@
         <!-- Topbar End -->
         <!-- NavBar -->
         <div class="relative flex w-full">
-            <livewire:pages.main-menu-view />
+            {{-- <livewire:pages.main-menu-view /> --}}
         </div>
         <!-- NavBar End -->
     </header>
