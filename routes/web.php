@@ -1,5 +1,10 @@
 <?php
 
+use App\Livewire\Pages\Home;
+use App\Livewire\Pages\About;
+use App\Livewire\Pages\Contact;
+use App\Livewire\Pages\IcDatabase;
+use App\Livewire\Pages\Repairing;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::get('/', Home::class)->name('/');
+Route::get('/about', About::class)->name('about');
+Route::get('/contact', Contact::class)->name('contact');
+Route::get('/repairing', Repairing::class)->name('repairing');
+Route::get('/ic-database', IcDatabase::class)->name('ic-database');
 // Route::get('dashboard', function () {
 //     return redirect('/panel');
 // })->name('dashboard');

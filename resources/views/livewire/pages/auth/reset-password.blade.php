@@ -16,9 +16,9 @@ layout('layouts.guest');
 state('token')->locked();
 
 state([
-    'email' => fn () => request()->string('email')->value(),
+    'email' => fn() => request()->string('email')->value(),
     'password' => '',
-    'password_confirmation' => ''
+    'password_confirmation' => '',
 ]);
 
 rules([
@@ -33,17 +33,16 @@ $resetPassword = function () {
     // Here we will attempt to reset the user's password. If it is successful we
     // will update the password on an actual user model and persist it to the
     // database. Otherwise we will parse the error and return the response.
-    $status = Password::reset(
-        $this->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user) {
-            $user->forceFill([
+    $status = Password::reset($this->only('email', 'password', 'password_confirmation', 'token'), function ($user) {
+        $user
+            ->forceFill([
                 'password' => Hash::make($this->password),
                 'remember_token' => Str::random(60),
-            ])->save();
+            ])
+            ->save();
 
-            event(new PasswordReset($user));
-        }
-    );
+        event(new PasswordReset($user));
+    });
 
     // If the password was successfully reset, we will redirect the user back to
     // the application's home authenticated view. If there is an error we can
@@ -62,18 +61,33 @@ $resetPassword = function () {
 ?>
 
 <div>
+    <!-- welcome to -->
+    <section class="relative flex flex-col justify-center w-full h-72 bg-brandBlack/80">
+        <img class="object-cover object-top w-full h-full mix-blend-overlay md:object-center" src="img/bg/contactus.jpg"
+            alt="" />
+        <div class="absolute inset-0">
+            <div class="flex flex-col items-center justify-center h-full">
+                <h2 class="text-center text-3xl font-bold text-brand50 [text-shadow:_0_2px_0_rgb(255_0_0_/_90%)] md:text-4xl lg:text-5xl"
+                    data-aos="fade" data-aos-offset="0" data-aos-duration="1000">
+                    Reset Password
+                </h2>
+            </div>
+        </div>
+    </section>
     <form wire:submit="resetPassword">
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
+            <x-text-input wire:model="email" id="email" class="block w-full mt-1" type="email" name="email"
+                required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            <x-text-input wire:model="password" id="password" class="block w-full mt-1" type="password" name="password"
+                required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -81,9 +95,8 @@ $resetPassword = function () {
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
-                          type="password"
-                          name="password_confirmation" required autocomplete="new-password" />
+            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block w-full mt-1"
+                type="password" name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
@@ -94,4 +107,7 @@ $resetPassword = function () {
             </x-primary-button>
         </div>
     </form>
+    <!-- footer -->
+    @include('layouts.include.guest.footer')
+    <!-- footer END -->
 </div>
