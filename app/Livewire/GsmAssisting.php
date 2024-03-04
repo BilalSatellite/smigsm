@@ -12,7 +12,7 @@ use Livewire\Attributes\Layout;
 use ProtoneMedia\LaravelCrossEloquentSearch\Search;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-#[Layout('layouts.gsmassisting')]
+#[Layout('layouts.guest')]
 class GsmAssisting extends Component
 {
     use WithPagination;

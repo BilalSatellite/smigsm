@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\GsmAssisting;
+use App\Livewire\Guest\HomePage;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::get('/', HomePage::class);
+// Route::view('/', 'welcome');
 // Route::get('dashboard', function () {
 //     return redirect('/panel');
 // })->name('dashboard');
