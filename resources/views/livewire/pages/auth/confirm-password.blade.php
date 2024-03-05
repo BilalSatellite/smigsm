@@ -44,10 +44,11 @@ $confirmPassword = function () {
     <form wire:submit="confirmPassword">
         <!-- Password -->
         <div>
+
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input wire:model="password" id="password" class="block w-full mt-1" type="password" name="password"
-                required autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-text-input wire:model="password" class="block w-full mt-1" type="password" name="password" required
+                autocomplete="current-password" />
+            <x-input-error :messages="$errors->get('password')" class="mt-1" />
         </div>
         <div class="flex justify-end mt-4">
             <x-primary-button>

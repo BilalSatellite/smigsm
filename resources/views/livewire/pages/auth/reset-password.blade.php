@@ -62,7 +62,7 @@ $resetPassword = function () {
 
 <div>
     <!-- welcome to -->
-    <section class="relative flex flex-col justify-center w-full h-72 bg-brandBlack/80">
+    <section class="relative flex flex-col justify-center w-full h-32 bg-brandBlack/80">
         <img class="object-cover object-top w-full h-full mix-blend-overlay md:object-center" src="img/bg/contactus.jpg"
             alt="" />
         <div class="absolute inset-0">
@@ -78,25 +78,25 @@ $resetPassword = function () {
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block w-full mt-1" type="email" name="email"
-                required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-text-input wire:model="email" class="block w-full mt-1" type="email" name="email" autofocus
+                autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input wire:model="password" id="password" class="block w-full mt-1" type="password" name="password"
-                required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-text-input wire:model="password" class="block w-full mt-1" type="password" name="password"
+                autocomplete="new-password" />
+            <x-input-error :messages="$errors->get('password')" class="mt-1" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block w-full mt-1"
-                type="password" name="password_confirmation" required autocomplete="new-password" />
+            <x-text-input wire:model="password_confirmation" class="block w-full mt-1" type="password"
+                name="password_confirmation" autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>

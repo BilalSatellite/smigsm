@@ -15,6 +15,10 @@
     </section>
     <!-- welcome to End-->
     <h1>ICs Database</h1>
+    <x-text-input name="test" />
+
+    <x-checkbox name="name" label="name" />
+
 
     <!-- footer -->
     @include('layouts.include.guest.footer')

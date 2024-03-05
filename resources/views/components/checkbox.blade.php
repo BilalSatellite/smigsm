@@ -1,7 +1,9 @@
-@props(['label', 'for'])
-<label for="{{ $for }}" class="inline-flex items-center">
-    <input id="{{ $for }}" type="checkbox" {!! $attributes->merge([
-        'class' => 'text-brandRed border-brandRed/70 rounded shadow-sm focus:ring-brandRed/90 ring-offset-zinc-800"',
-    ]) !!} name="{{ $for }}">
-    <span class="text-sm text-brandBlack ms-2">{{ $label }}</span>
+@props(['label', 'name', 'id', 'textcolor' => 'brandBlack'])
+<label class="flex items-center">
+    <input type="checkbox" {!! $attributes->merge([
+        'class' => 'w-5 h-5 text-brandRed  border-brandRed rounded focus:ring-brandRed/70  focus:none ',
+        'name' => $name,
+        'id' => $name,
+    ]) !!}>
+    <span class="ml-1  text-md {{ $textcolor }}">{{ ucfirst($label) }}</span>
 </label>
