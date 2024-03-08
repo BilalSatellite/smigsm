@@ -22,27 +22,27 @@
                     @auth
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
-                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                {{-- @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <button
                                         class="flex items-center text-sm transition border-2 border-transparent rounded-full text-brand100 focus:outline-none focus:border-none">
                                         Hi, {{ Auth::user()->name }}
                                         <img class="object-cover w-8 h-8 ml-1 rounded-full"
                                             src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                     </button>
-                                @else
-                                    <span class="inline-flex rounded-md">
-                                        <button type="button"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 transition border border-transparent rounded-mdfocus:outline-none">
-                                            {{ Auth::user()->name }}
-                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </span>
-                                @endif
+                                @else --}}
+                                <span class="inline-flex rounded-md">
+                                    <button type="button"
+                                        class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 transition border border-transparent rounded-mdfocus:outline-none">
+                                        {{ Auth::user()->name }}
+                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </span>
+                                {{-- @endif --}}
                             </x-slot>
                             <x-slot name="content">
                                 @role('admin')
@@ -51,15 +51,15 @@
                                         {{ __('Dashboard') }}
                                     </x-dropdown-link>
                                 @endrole
-                                <x-dropdown-link href="{{ route('profile.show') }}"
+                                <x-dropdown-link href="{{ url('profile.show') }}"
                                     class="m-1 font-[Poppins] rounded-md border-b-2 border-brandBlack bg-brand100 p-2 font-semibold text-brandBlack hover:text-brandRed">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
                                 {{-- <div class="border-t border-brand300"></div> --}}
                                 <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="{{ url('logout') }}">
                                     @csrf
-                                    <x-dropdown-link href="{{ route('logout') }}"
+                                    <x-dropdown-link href="{{ url('logout') }}"
                                         class="m-1 font-[Poppins] rounded-md border-b-2 border-brandBlack bg-brand100 p-2 font-semibold text-brandBlack hover:text-brandRed"
                                         onclick="event.preventDefault();
                                                 this.closest('form').submit();">
