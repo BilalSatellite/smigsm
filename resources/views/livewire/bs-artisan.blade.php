@@ -27,7 +27,7 @@
                                 @foreach ($arguments as $key => $argument)
                                     <div class="flex flex-col items-start">
                                         <label for="name"
-                                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-100 ">
+                                            class="block mb-1 text-sm font-medium text-gray-900 ">
                                             {{ $argument['title'] }}
                                             @if ($argument['required'])
                                                 <span class="font-medium error-text">*</span>
@@ -41,7 +41,7 @@
                                             </x-filament::input.wrapper>
                                         </div>
                                         @if (!$errors->has('argumentformData.' . $argument['name']))
-                                            <div class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                                            <div class="text-xs font-medium text-gray-500">
                                                 <p class="mt-1">{{ $argument['description'] }}</p>
                                             </div>
                                         @else
@@ -61,7 +61,7 @@
                                     @if ($option['accept_value'])
                                         <div class="flex flex-col items-start">
                                             <label for=" name"
-                                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                class="block mb-1 text-sm font-medium text-gray-900">
                                                 {{ $option['title'] }}
                                                 @if ($option['required'])
                                                     @if ($selectedCommand != 'make:controller')
@@ -75,7 +75,7 @@
                                                     wire:key="optionformData.{{ $option['name'] }}" />
                                             </x-filament::input.wrapper>
                                             @if (!$errors->has('optionformData.' . $option['name']))
-                                                <div class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                                                <div class="text-xs font-medium text-gray-500">
                                                     <p class="mt-1">{{ $option['description'] }}</p>
                                                 </div>
                                             @else
@@ -99,21 +99,21 @@
                                 @foreach ($options as $option)
                                     @if (!$option['accept_value'])
                                         <div wire:key="{{ $option['name'] }}"
-                                            class="flex p-2 border border-gray-600 rounded-md gap-x-2 dark:border-gray-700">
+                                            class="flex p-2 border border-gray-600 rounded-md gap-x-2">
                                             <div>
                                                 <x-filament::input.checkbox
                                                     wire:model="optionformData.{{ $option['name'] }}" />
                                             </div>
                                             <div class="">
                                                 <label for="helper-checkbox"
-                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+                                                    class="ml-2 text-sm font-medium text-gray-900">
                                                     {{ $option['title'] }}
                                                     @if ($option['required'])
                                                         <span class="text-xs font-medium text-red-500">*</span>
                                                     @endif
                                                 </label>
                                                 <p id="helper-checkbox-text"
-                                                    class="text-xs font-medium text-gray-500 dark:text-gray-300">
+                                                    class="text-xs font-medium text-gray-500">
                                                     {{ $option['description'] }}
                                                 </p>
                                             </div>

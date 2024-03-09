@@ -9,19 +9,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    @livewireStyles
+    @stack('styles')
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         [x-cloak] {
             display: none !important;
         }
     </style>
-    @stack('styles')
-    @livewireStyles
 </head>
 
 <body x-cloak class="relative overflow-x-hidden" x-data="{ scrolledFromTop: false, NavisOpen: false }" x-init="window.pageYOffset >= 200 ? scrolledFromTop = true : scrolledFromTop = false"
@@ -52,22 +53,13 @@
         <!-- Topbar End -->
         <!-- NavBar -->
         <div class="relative flex w-full">
-            <livewire:pages.main-menu-view />
+            @include('layouts.include.navigation-menu')
+
         </div>
         <!-- NavBar End -->
     </header>
     {{ $slot }}
-    {{-- <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0">
-            <div>
-                <a href="/" wire:navigate>
-                    <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
-                </a>
-            </div>
 
-            <div class="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div> --}}
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -81,6 +73,17 @@
     <!-- Scripts -->
     @stack('scripts')
     @livewireScripts
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000, // values from 0 to 3000, with step 50ms
+            offset: 300, // offset (in px) from the original trigger point
+        });
+    </script>
 </body>
+
 
 </html>

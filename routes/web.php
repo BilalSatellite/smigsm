@@ -37,7 +37,16 @@ Route::get('/ic-database', IcDatabase::class)->name('ic-database');
 // Route::get('/profile', function () {
 //     return redirect('/panel/my-profile');
 // })->middleware(['auth'])->name('profile');
-Route::get('/dashboard', function () {
-    return redirect('/panel');
-})->middleware(['auth'])->name('dashboard');
-require __DIR__ . '/auth.php';
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    // Route::get('/panel', function () {
+    //     return redirect('/panel');
+    // })->name('panel');
+    Route::get('/user/profile', function () {
+        return redirect('/panel/my-profile');
+    });
+});

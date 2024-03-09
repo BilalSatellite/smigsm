@@ -6,6 +6,7 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
+
 use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
 use Filament\Navigation\NavigationGroup;
@@ -20,6 +21,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Laravel\Fortify\Http\Controllers\EmailVerificationPromptController;
 
 class PanelPanelProvider extends PanelProvider
 {
@@ -30,6 +32,7 @@ class PanelPanelProvider extends PanelProvider
             ->spa()
             ->id('panel')
             ->path('panel')
+            ->emailVerification(EmailVerificationPromptController::class)
             ->colors([
                 'primary' => Color::Amber,
                 'gray' => Color::Gray,

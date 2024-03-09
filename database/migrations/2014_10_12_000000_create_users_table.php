@@ -17,14 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('profile_photo_path', 2048)->nullable();
-            $table->string('banned_time')->nullable();
-            $table->string('banned_status')->default('Active');
-            $table->integer('wrong_attempt')->default(0);
             $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */

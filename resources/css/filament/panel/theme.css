@@ -1,5 +1,12 @@
 @import '/vendor/filament/filament/resources/css/theme.css';
 @config 'tailwind.config.js';
 .error-text{
-    @apply text-xs text-red-500 !important;
+    @apply text-xs text-red-500  !important;
+}
+.email-text{
+    @apply mt-2 text-sm font-medium text-green-600 !important;
+}
+
+.bg-modal{
+    @apply bg-gray-600 opacity-75  !important;
 }
